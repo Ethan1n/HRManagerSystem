@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.InterviewDao">
+	<resultMap type="Interview" id="interviewMap">
+		<id column="interview_id" property="interviewId"/>
+		<result column="interview_date" property="interviewDate"/>
+		<association property="candidates" javaType="Candidates">
+			<id column="candidates_id" property="candidatesId"/>
+			<result column="vistor_id" property="vistorId"/>
+			<result column="delivery_time" property="deliveryTime"/>
+			<result column="status" property="status"/>
+		</association>
+	</resultMap>
+	<insert id="insertInterview">
+		INSERT INTO 
+			interviews(interview_date, candidates_id)
+		VALUES
+			(#{interviewDate}, #{candidates.candidatesId})
+	</insert>
+	
+	<select id="queryByVistorId" resultMap="interviewMap">
+		SELECT 
+			*
+		FROM
+			interviews i, candidates c
+		WHERE 
+			i.candidates_id=c.candidates_id
+		AND
+			c.vistor_id=#{vistorId}
+	</select>
+	
+</mapper>

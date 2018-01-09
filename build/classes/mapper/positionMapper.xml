@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.PositionDao">
+	<resultMap type="Position" id="positionMap">
+		<id column="position_id" property="positionId"/>
+		<result column="position_name" property="positionName"/>
+	<!-- 	<result column="posicreate_time" property="posicreateTime"/> -->
+		<association property="department" javaType="Department">
+			<id column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+		</association>
+	</resultMap>
+	<insert id="insertPosition">
+		INSERT INTO
+			positions(position_name, posicreate_time, department_id)
+		VALUES
+			(#{positionName}, #{posicreateTime}, #{department.departmentId})
+	</insert>
+	
+	<delete id="deletePosition">
+		DELETE FROM positions WHERE position_id=#{positionId}
+	</delete>
+	
+	<update id="updatePosition">
+		UPDATE positions SET position_name=#{positionName} WHERE position_id=#{positionId}
+	</update>
+	
+	<select id="queryAllPosition" resultMap="positionMap">
+		SELECT 
+			* 
+		FROM 
+			positions p, departments d 
+		WHERE 
+			p.department_id=d.department_id
+	</select>
+	
+	<select id="queryByDepartmentId" resultMap="positionMap">
+		SELECT 
+			* 
+		FROM 
+			positions p, departments d 
+		WHERE 
+			p.department_id=d.department_id
+		AND
+			d.department_id=#{departmentId}
+	</select>
+</mapper>

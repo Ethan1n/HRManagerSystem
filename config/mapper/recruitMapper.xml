@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.RecruitDao">
+	<resultMap type="Recruit" id="recruitMap">
+		<id column="recruit_id" property="recruitId"/>
+		<result column="company_name" property="companyName"/>
+		<result column="company_add" property="companyAdd"/>
+		<association property="department" javaType="Department">
+			<id column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+		</association>
+		<association property="position" javaType="Position">
+			<id column="position_id" property="positionId"/>
+			<result column="position_name" property="positionName"/>
+		</association>
+	</resultMap>
+	<insert id="insertRecruit">
+		INSERT INTO 
+			recruits(company_name, department_id, position_id, company_add)
+		VALUES
+			(#{companyName}, #{department.departmentId}, #{position.positionId}, #{companyAdd})
+	</insert>
+	
+	<delete id="deleteRecruit">
+		DELETE FROM
+			recruits
+		WHERE recruit_id=#{recruitId}
+	</delete>
+	
+	<update id="updateRecruit">
+		UPDATE 
+			recruits
+		SET 
+			company_name=#{companyName}, department_id=#{department.departmentId}, 
+			position_id=#{position.positionId}, company_add=#{companyAdd}
+		WHERE
+			recruit_id=#{recruitId}
+	</update>
+	
+	<select id="queryAllRecruit" resultMap="recruitMap">
+		SELECT 
+			*
+		FROM 
+			recruits r, departments d, positions p
+		WHERE
+			r.department_id=d.department_id
+		AND
+			r.position_id=p.position_id
+	</select>
+</mapper>

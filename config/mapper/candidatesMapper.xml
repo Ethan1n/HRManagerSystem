@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.CandidatesDao">
+	<insert id="insertCandidates">
+		INSERT INTO 
+			candidates(vistor_id, delivery_time, status)
+		VALUES
+			(#{vistorId}, #{deliveryTime}, #{status})
+	</insert>
+	
+	<update id="updateCandidates">
+		UPDATE 
+			candidates
+		SET 
+			status=#{status}
+		WHERE
+			candidates_id=#{candidatesId}
+	</update>
+	
+	<select id="queryAllCandidatesByStatus" resultType="Candidates">
+		SELECT 
+			*
+		FROM 
+			candidates
+		WHERE 
+			status=#{status}
+	</select>
+</mapper>

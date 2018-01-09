@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.ResumeDao">
+	<insert id="insertResume">
+		INSERT INTO
+			resumes(vistor_id, real_name, gender, age, education, tel, email, apply_departmentId, 
+			apply_positionId, expected_salary, work_experience ,last_job, political_status, hobby)
+		VALUES
+			(#{vistorId}, #{realName}, #{gender}, #{age}, #{education}, #{tel}, #{email}, #{applyDepartment.departmentId}, 
+			#{applyPosition.positionId}, #{expectedSalary}, #{workExperience}, #{lastJob}, #{politicalStatus}, #{hobby})
+	</insert>
+	
+	<update id="updateResume">
+		UPDATE 
+			resumes
+		SET 
+			real_name=#{realName}, gender=#{gender}, age=#{age}, education=#{education}, tel=#{tel}, email=#{email}, expected_salary=#{expectedSalary}, 
+			work_experience=#{workExperience}, last_job=#{lastJob}, political_status=#{politicalStatus}, hobby=#{hobby}
+		WHERE 
+			resume_id=#{resumeId}
+	</update>
+	
+	<select id="queryByVistorId" resultType="Resume">
+		SELECT * FROM resumes WHERE vistor_id=#{vistorId}
+	</select>
+</mapper>
