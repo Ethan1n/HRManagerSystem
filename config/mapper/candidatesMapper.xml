@@ -13,7 +13,7 @@
 		UPDATE 
 			candidates
 		SET 
-			status=#{status}
+			status=1
 		WHERE
 			candidates_id=#{candidatesId}
 	</update>

@@ -24,4 +24,6 @@ public interface VistorService {
 	public Boolean sendResume(Candidates candidates);//投递简历,往应聘表中添加一条数据
 	
 	//接受面试邀请
+	
+	public Boolean modifyVistorPwd(Vistor vistor);//游客修改密码
 }

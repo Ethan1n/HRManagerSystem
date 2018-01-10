@@ -29,10 +29,7 @@ public class TestCandidatesDao {
 	
 	@Test
 	public void testUpdateCandidates() {
-		Candidates candidates=new Candidates();
-		candidates.setCandidatesId(1);
-		candidates.setStatus(1);
-		System.out.println(candidatesDao.updateCandidates(candidates));
+		System.out.println(candidatesDao.updateCandidates(1));
 	}
 	
 	@Test

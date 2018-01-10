@@ -145,15 +145,14 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Resume findResumeByVistorId(Integer vistorId) {
-		Resume resume=resumeDao.queryByVistorId(vistorId);
-		return resume;
-	}
-
-	@Override
-	public Boolean makeMarkToResume(Candidates candidates) {
-		Integer res=candidatesDao.updateCandidates(candidates);
-		return res>0?true:false;
+	public Resume makeMarkToResume(Integer candidatesId, Integer vistorId) {
+		Integer res=candidatesDao.updateCandidates(candidatesId);
+		Boolean flag=res>0?true:false;
+		if(flag) {
+			return resumeDao.queryByVistorId(vistorId);
+		}else {
+			return null;
+		}
 	}
 
 	@Override

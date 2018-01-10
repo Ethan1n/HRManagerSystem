@@ -88,7 +88,7 @@
 						<td><input type="text" name="hobby" placeholder="请输入兴趣爱好"></td>
 					</tr>
 					<tr>
-						<td colspan="4" align="center"><input type="submit" value="保存">&nbsp;<button onclick="javascript:history.back(-1);">返回</button> </td>
+						<td colspan="4" align="center"><input type="submit" value="保存">&nbsp;<button onclick="javascript:history.back(-1)">返回s上一页</button> </td>
 					</tr>
 				</table>
 			</form>
@@ -166,7 +166,7 @@
 						<td><input type="text" name="hobby" value="${resume.hobby}"></td>
 					</tr>
 					<tr>
-						<td colspan="4" align="center"><input type="submit" value="保存">&nbsp;<button onclick="javascript:history.back(-1);">返回</button> </td>
+						<td colspan="4" align="center"><input type="submit" value="保存">&nbsp;<button onclick="javascript:history.back(-1)">返回s上一页</button> </td>
 					</tr>
 				</table>
 			</form>

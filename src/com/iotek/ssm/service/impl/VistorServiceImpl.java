@@ -1,5 +1,6 @@
 package com.iotek.ssm.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,8 @@ public class VistorServiceImpl implements VistorService {
 
 	@Override
 	public Boolean sendResume(Candidates candidates) {
+		candidates.setDeliveryTime(new Date());
+		candidates.setStatus(0);
 		Integer res=candidatesDao.insertCandidates(candidates);
 		return res>0?true:false;
 	}
@@ -68,6 +71,12 @@ public class VistorServiceImpl implements VistorService {
 	public Resume findResumeByVistorId(Integer vistorId) {
 		Resume resume=resumeDao.queryByVistorId(vistorId);
 		return resume;
+	}
+
+	@Override
+	public Boolean modifyVistorPwd(Vistor vistor) {
+		Integer res=vistorDao.updateVistorPwd(vistor);
+		return res>0?true:false;
 	}
 
 }

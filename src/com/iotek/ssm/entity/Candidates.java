@@ -7,7 +7,7 @@ public class Candidates {//应聘类
 	private Integer candidatesId;
 	private Integer vistorId;//投递简历的游客ID
 	private Date deliveryTime;//投递简历的时间
-	private Integer status;//应聘申请的状态(0未查看, 1已查看)
+	private Integer status;//查看状态(0未处理, 1已处理)
 	
 	public Candidates(Integer candidatesId, Integer vistorId, Date deliveryTime, Integer status) {
 		super();

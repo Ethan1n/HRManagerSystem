@@ -8,11 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iotek.ssm.entity.Admin;
+import com.iotek.ssm.entity.Candidates;
 import com.iotek.ssm.entity.Department;
 import com.iotek.ssm.entity.Employee;
 import com.iotek.ssm.entity.Position;
+import com.iotek.ssm.entity.Recruit;
 import com.iotek.ssm.entity.Resume;
 import com.iotek.ssm.entity.Vistor;
 import com.iotek.ssm.service.AdminService;
@@ -117,9 +120,30 @@ public class VistorController {
 		}
 	}
 	
-	@RequestMapping("/toModifyPwd")
-	public String toModifyPwd() {
-		return "modifyPwd";
+	@RequestMapping("/modifyPwd")
+	public String modifyPwd(Vistor vistor) {
+		Boolean flag=vistorService.modifyVistorPwd(vistor);
+		if(flag) {
+			return "redirect:/vistor/toLogin";
+		}else {
+			return null;
+		}
 	}
 	
+	@RequestMapping("/showRecruit")
+	public String showRecruit(Model model, String vistorId) {
+		List<Recruit> recruits=vistorService.findAllRecruit();
+		model.addAttribute("recruits", recruits);
+		model.addAttribute("vistorId", vistorId);
+		System.out.println(vistorId);
+		return "recruitPage";
+	}
+	
+	@RequestMapping("/sendResume")
+	@ResponseBody
+	public String sendResume(Candidates candidates) {
+		System.out.println(candidates.getVistorId());
+		Boolean flag=vistorService.sendResume(candidates);
+		return String.valueOf(flag);
+	}
 }

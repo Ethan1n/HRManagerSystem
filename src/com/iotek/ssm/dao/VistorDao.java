@@ -11,4 +11,6 @@ public interface VistorDao {
 	public Vistor queryByVistorId(Integer vistor_id);//根据ID查询游客
 	
 	public Vistor queryByVistorNameAndPwd(Vistor vistor);//根据游客名和密码查询游客
+	
+	public Integer updateVistorPwd(Vistor vistor);//游客修改密码
 }

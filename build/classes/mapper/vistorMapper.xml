@@ -24,4 +24,13 @@
 	<delete id="deleteVistor">
 		DELETE FROM vistors WHERE vistor_name=#{vistorName}
 	</delete>
+	
+	<update id="updateVistorPwd">
+		UPDATE 
+			vistors
+		SET
+			vistor_password=#{vistorPassword}
+		WHERE
+			vistor_id=#{vistorId}
+	</update>
 </mapper>
