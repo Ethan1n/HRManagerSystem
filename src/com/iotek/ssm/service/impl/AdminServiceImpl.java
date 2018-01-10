@@ -191,4 +191,16 @@ public class AdminServiceImpl implements AdminService {
 		Interview interview=interviewDao.queryByVistorId(vistorId);
 		return interview;
 	}
+
+	@Override
+	public Department findDepartmentById(Integer departmentId) {
+		Department department=departmentDao.queryDepartmentById(departmentId);
+		return department;
+	}
+
+	@Override
+	public Position findPositionById(Integer positionId) {
+		Position position=positionDao.queryPositionById(positionId);
+		return position;
+	}
 }

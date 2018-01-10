@@ -22,6 +22,10 @@
 		SELECT * FROM departments
 	</select>
 	
+	<select id="queryDepartmentById" resultType="Department">
+		SELECT * FROM departments WHERE department_id=#{departmentId}
+	</select>
+	
 	<delete id="deleteDepartment">
 		DELETE FROM departments WHERE department_id=#{departmentId}
 	</delete>

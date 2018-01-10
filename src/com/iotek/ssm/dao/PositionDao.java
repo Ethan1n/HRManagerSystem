@@ -14,6 +14,8 @@ public interface PositionDao {
 	
 	public List<Position> queryAllPosition();//查看所有职位
 	
+	public Position queryPositionById(Integer positionId);//根据ID查看职位
+	
 	public List<Position> queryByDepartmentId(Integer departmentId);//根据部门ID查询职位
 	
 }

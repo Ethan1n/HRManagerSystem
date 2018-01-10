@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iotek.ssm.dao.ResumeDao">
+	<resultMap type="Resume" id="resumeMap">
+		<id column="resume_id" property="resumeId"/>
+		<result column="vistor_id" property="vistorId"/>
+		<result column="real_name" property="realName"/>
+		<result column="gender" property="gender"/>
+		<result column="age" property="age"/>
+		<result column="education" property="education"/>
+		<result column="tel" property="tel"/>
+		<result column="email" property="email"/>
+		<result column="expected_salary" property="expectedSalary"/>
+		<result column="work_experience" property="workExperience"/>
+		<result column="last_job" property="lastJob"/>
+		<result column="political_status" property="politicalStatus"/>
+		<result column="hobby" property="hobby"/>
+		<association property="applyDepartment" javaType="Department">
+			<id column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+		</association>
+		<association property="applyPosition" javaType="Position">
+			<id column="position_id" property="positionId"/>
+			<result column="position_name" property="positionName"/>
+		</association>
+	</resultMap>
+	
 	<insert id="insertResume">
 		INSERT INTO
 			resumes(vistor_id, real_name, gender, age, education, tel, email, apply_departmentId, 
@@ -21,7 +45,16 @@
 			resume_id=#{resumeId}
 	</update>
 	
-	<select id="queryByVistorId" resultType="Resume">
-		SELECT * FROM resumes WHERE vistor_id=#{vistorId}
+	<select id="queryByVistorId" resultMap="resumeMap">
+		SELECT 
+			* 
+		FROM 
+			resumes r, departments d, positions p
+		WHERE 
+			r.apply_departmentId=d.department_id
+		AND
+			r.apply_positionId=p.position_id
+		AND
+			vistor_id=#{vistorId}
 	</select>
 </mapper>

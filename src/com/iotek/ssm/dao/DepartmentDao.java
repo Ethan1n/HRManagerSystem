@@ -13,4 +13,6 @@ public interface DepartmentDao {
 	public Integer updateDepartment(Department department);//修改部门信息
 	
 	public List<Department> queryAllDepartment();//查询所有部门
+	
+	public Department queryDepartmentById(Integer departmentId);//根据ID查询部门
 }

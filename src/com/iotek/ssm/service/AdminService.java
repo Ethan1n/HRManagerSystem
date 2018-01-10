@@ -27,6 +27,8 @@ public interface AdminService {
 	
 	public List<Department> findAllDepartment();//查询所有部门
 	
+	public Department findDepartmentById(Integer departmentId);//查询单个部门
+	
 	public List<Position> findAllPositionByDeptId(Integer departmentId);//通过查看某部门，查看该部门下的所有职位
 	
 	public List<Employee> findAllEmployeeByDeptId(Integer departmentId);//通过查看某部门，查看该部门下的所有员工
@@ -41,6 +43,8 @@ public interface AdminService {
 	public Boolean modifyPosition(Position position);//更新职位
 	
 	public List<Position> findAllPosition();//查看所有职位
+	
+	public Position findPositionById(Integer positionId);//查看单个职位
 	
 	public List<Employee> findByPositionId(Integer positionId);//通过查看某职位，查看该职位下的员工
 	

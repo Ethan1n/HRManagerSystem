@@ -88,7 +88,38 @@ public class VistorController {
 		model.addAttribute("departments", departments);
 		model.addAttribute("positions", positions);
 		model.addAttribute("resume", resume);
+		model.addAttribute("vistorId", vistorId);
 		return "resume";
+	}
+	
+	@RequestMapping("/writeResume")
+	public String writeResume(Resume resume, @RequestParam("departmentId") String departmentId, @RequestParam("positionId") String positionId) {
+		Department department=adminService.findDepartmentById(Integer.valueOf(departmentId));
+		Position position=adminService.findPositionById(Integer.valueOf(positionId));
+		resume.setApplyDepartment(department);
+		resume.setApplyPosition(position);
+		Boolean flag=vistorService.writeResume(resume);
+		if(flag) {
+			return "redirect:/vistor/showResume?vistorId="+resume.getVistorId();
+		}else {
+			return null;
+		}
+	}
+	
+	@RequestMapping("/modifyResume")
+	public String modifyResume(Resume resume) {
+		Boolean flag=vistorService.modifyResume(resume);
+		System.out.println(flag);
+		if(flag) {
+			return "redirect:/vistor/showResume?vistorId="+resume.getVistorId();
+		}else {
+			return null;
+		}
+	}
+	
+	@RequestMapping("/toModifyPwd")
+	public String toModifyPwd() {
+		return "modifyPwd";
 	}
 	
 }

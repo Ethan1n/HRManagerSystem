@@ -26,7 +26,7 @@ public class TestResumeDao {
 	
 	@Test
 	public void testUpdateResume() {
-		Resume resume=new Resume(1, null, null, "男", "26", "本科", "13917963255", "78954621@QQ.com", null, null, "4000-5000", "3年会计工作经验", "会计", "党员", "打游戏");
+		Resume resume=new Resume(5, null, null, "男", "24", "本科", "13565987854", "4478965410@Foxmail.com", null, null, "4000-5000", "无", "无", "党员", "打游戏");
 		System.out.println(resumeDao.updateResume(resume));
 	}
 	
