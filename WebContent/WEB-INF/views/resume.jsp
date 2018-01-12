@@ -44,9 +44,9 @@
 					</tr>
 					<tr>
 						<td>手机号:</td>
-						<td><input type="text" name="tel" placeholder="请输入联系方式"></td>
+						<td><input type="tel" name="tel" placeholder="请输入联系方式"></td>
 						<td>E-mail:</td>
-						<td><input type="text" name="email" placeholder="请输入邮箱地址"></td>
+						<td><input type="email" name="email" placeholder="请输入邮箱地址"></td>
 					</tr>
 					<tr>
 						<td>应聘职位:</td>
@@ -88,7 +88,7 @@
 						<td><input type="text" name="hobby" placeholder="请输入兴趣爱好"></td>
 					</tr>
 					<tr>
-						<td colspan="4" align="center"><input type="submit" value="保存">&nbsp;<button onclick="javascript:history.back(-1)">返回s上一页</button> </td>
+						<td colspan="4" align="center"><input type="submit" value="保存">&nbsp;<button onclick="javascript:history.back(-1)">返回上一页</button></td>
 					</tr>
 				</table>
 			</form>
@@ -128,9 +128,9 @@
 					</tr>
 					<tr>
 						<td>手机号:</td>
-						<td><input type="text" name="tel" value="${resume.tel}"></td>
+						<td><input type="tel" name="tel" value="${resume.tel}"></td>
 						<td>E-mail:</td>
-						<td><input type="text" name="email" value="${resume.email}"></td>
+						<td><input type="email" name="email" value="${resume.email}"></td>
 					</tr>
 					<tr>
 						<td>应聘职位:</td>

@@ -15,6 +15,7 @@
 			<result column="position_name" property="positionName"/>
 		</association>
 	</resultMap>
+	
 	<insert id="insertRecruit">
 		INSERT INTO 
 			recruits(company_name, department_id, position_id, company_add)
@@ -32,8 +33,7 @@
 		UPDATE 
 			recruits
 		SET 
-			company_name=#{companyName}, department_id=#{department.departmentId}, 
-			position_id=#{position.positionId}, company_add=#{companyAdd}
+			company_name=#{companyName}, company_add=#{companyAdd}
 		WHERE
 			recruit_id=#{recruitId}
 	</update>

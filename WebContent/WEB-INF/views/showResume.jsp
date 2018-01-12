@@ -6,6 +6,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理员查看简历</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#date").hide();
+		$("#interview").click(function(){
+			$("#date").show();
+		})
+	})
+	$(function(){
+		$("#sure").click(function(){
+			var date=$("input[name='interviewDate']").val();
+			var id=$("input[name='candidatesId']").val();
+			alert(id);
+			var setDate=new Date(date).getTime();
+			var sysDate=new Date().getTime();
+			if(setDate<sysDate){
+				alert("面试时间错误，重新输入");
+				return false;
+			}else{
+				$.ajax({
+					url:"${pageContext.request.contextPath}/admin/notifyInterview",
+					type:"post",
+					dataType:"text",
+					data:{interviewDate:date,candidatesId:id},
+					success:function(result){
+						if(result=="true"){
+							alert("发送面试邀请成功");
+						}else{
+							alert("发送面试邀请失败");
+						}
+					},
+				})
+			}
+		})
+	})
+</script>
 </head>
 <body>
 	<div align="center">
@@ -70,6 +106,17 @@
 				<td colspan="4" align="center"><button id="interview">发送面试邀请</button>&nbsp;<button onclick="javascript:history.back(-1)">返回上一页</button></td>
 			</tr>
 		</table>
+		<div id="date">
+			<table border="1" cellpadding="10" cellspacing="0">
+				<tr>
+					<td>请输入邀请面试的时间</td>
+					<td><input type="date" name="interviewDate"><input type="hidden" name="candidatesId" value="${candidatesId}"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input id="sure" type="submit" value="确定"></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

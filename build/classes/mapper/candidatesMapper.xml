@@ -18,12 +18,27 @@
 			candidates_id=#{candidatesId}
 	</update>
 	
-	<select id="queryAllCandidatesByStatus" resultType="Candidates">
+	<select id="queryAllCandidates" resultType="Candidates">
 		SELECT 
 			*
 		FROM 
 			candidates
-		WHERE 
-			status=#{status}
+	</select>
+	
+	<select id="queryCandidatesById" resultType="Candidates">
+		SELECT 
+			*
+		FROM 
+			candidates
+		WHERE
+			candidates_id=#{candidatesId}
+	</select>
+	<select id="queryCandidatesByVisotrId" resultType="Candidates">
+		SELECT
+			*
+		FROM
+			candidates
+		WHERE
+			vistor_id=#{vistorId}
 	</select>
 </mapper>

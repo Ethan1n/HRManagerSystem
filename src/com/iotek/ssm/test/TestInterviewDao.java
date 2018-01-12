@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.iotek.ssm.dao.InterviewDao;
-import com.iotek.ssm.entity.Candidates;
 import com.iotek.ssm.entity.Interview;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,11 +20,16 @@ public class TestInterviewDao {
 	
 	@Test
 	public void testInsertInterview() {
-		System.out.println(interviewDao.insertInterview(new Interview(-1, new Date(), new Candidates(1, null, null, null))));
+		System.out.println(interviewDao.insertInterview(new Interview(-1, new Date(), null)));
 	}
 	
 	@Test
 	public void testQueryByVistorId() {
 		System.out.println(interviewDao.queryByVistorId(1));
+	}
+	
+	@Test
+	public void testDeleteInterview() {
+		System.out.println(interviewDao.deleteInterview(1));
 	}
 }

@@ -48,4 +48,5 @@ public class Interview {//√Ê ‘¿‡
 		return "Interview [interviewId=" + interviewId + ", interviewDate=" + interviewDate + ", candidates="
 				+ candidates + "]";
 	}
+
 }

@@ -3,6 +3,7 @@ package com.iotek.ssm.service;
 import java.util.List;
 
 import com.iotek.ssm.entity.Candidates;
+import com.iotek.ssm.entity.Interview;
 import com.iotek.ssm.entity.Recruit;
 import com.iotek.ssm.entity.Resume;
 import com.iotek.ssm.entity.Vistor;
@@ -21,9 +22,11 @@ public interface VistorService {
 	
 	public Resume findResumeByVistorId(Integer vistorId);//根据游客ID查看简历
 	
+	public Candidates findCandidatesByVisotrId(Integer vistorId);//根据游客ID查看应聘信息
+	
 	public Boolean sendResume(Candidates candidates);//投递简历,往应聘表中添加一条数据
 	
-	//接受面试邀请
+	public Interview receiveInterview(Integer vistorId);//接受面试邀请
 	
 	public Boolean modifyVistorPwd(Vistor vistor);//游客修改密码
 }

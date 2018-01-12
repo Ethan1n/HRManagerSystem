@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iotek.ssm.dao.CandidatesDao;
+import com.iotek.ssm.dao.InterviewDao;
 import com.iotek.ssm.dao.RecruitDao;
 import com.iotek.ssm.dao.ResumeDao;
 import com.iotek.ssm.dao.VistorDao;
 import com.iotek.ssm.entity.Candidates;
+import com.iotek.ssm.entity.Interview;
 import com.iotek.ssm.entity.Recruit;
 import com.iotek.ssm.entity.Resume;
 import com.iotek.ssm.entity.Vistor;
@@ -27,6 +29,8 @@ public class VistorServiceImpl implements VistorService {
 	private ResumeDao resumeDao;
 	@Autowired
 	private CandidatesDao candidatesDao;
+	@Autowired
+	private InterviewDao interviewDao;
 	
 	
 	@Override
@@ -77,6 +81,18 @@ public class VistorServiceImpl implements VistorService {
 	public Boolean modifyVistorPwd(Vistor vistor) {
 		Integer res=vistorDao.updateVistorPwd(vistor);
 		return res>0?true:false;
+	}
+
+	@Override
+	public Interview receiveInterview(Integer vistorId) {
+		Interview interview=interviewDao.queryByVistorId(vistorId);
+		return interview;
+	}
+
+	@Override
+	public Candidates findCandidatesByVisotrId(Integer vistorId) {
+		Candidates candidates=candidatesDao.queryCandidatesByVisotrId(vistorId);
+		return candidates;
 	}
 
 }

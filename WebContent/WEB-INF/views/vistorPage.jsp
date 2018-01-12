@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,9 +30,29 @@
  		})
  	})
  	$(function(){
- 		$("#input").hide();
+ 		$("#modifyPwd").hide();
  		$("a").eq(2).click(function(){
- 			$("#input").show();
+ 			$("#modifyPwd").show();
+ 		})
+ 	})
+ 	$(function(){
+ 		var id=$("#notice").val();
+ 		$.ajax({
+			url:"${pageContext.request.contextPath}/vistor/receiveInterview",
+			type:"post",
+			dataType:"text",
+			data:{vistorId:id},
+			success:function(result){
+				if(result=="true"){
+					alert("您有新的面试邀请请在反馈中查看");
+				}
+			},
+		})
+ 	})
+ 	$(function(){
+ 		$("#feedback").hide();
+ 		$("a").eq(0).click(function(){
+ 			$("#feedback").show();
  		})
  	})
  </script>
@@ -46,7 +68,31 @@
 		<a href="${pageContext.request.contextPath}/vistor/showRecruit?vistorId=${vistor.vistorId}"><img src="${pageContext.request.contextPath}/pictures/2_4.png"></a><br/><br/>
 		<a href="#"><img src="${pageContext.request.contextPath}/pictures/2_5.png"></a><br/><br/>
 	</div>
-	<div id="input" style="border: 2px;">
+	<div id="feedback" align="center">
+		<table border="2" cellpadding="10" cellspacing="0">
+			<tr>
+				<td colspan="4" align="center"><h3>反馈详情</h3></td>
+			</tr>
+			<tr>
+				<td>游客ID</td>
+				<td>投递时间</td>
+				<td>是否查看</td>
+				<td>面试时间</td>
+			</tr>
+			<tr>
+				<td><input id="notice" type="text" value="${vistor.vistorId}" disabled="disabled" size="2"></td>
+				<td><f:formatDate value="${candidates.deliveryTime}"/></td>
+					<c:if test="${candidates.status==0}">
+						<td>未查看</td>
+					</c:if>
+					<c:if test="${candidates.status==1}">
+						<td>已查看</td>
+					</c:if>
+				<td><f:formatDate value="${interview.interviewDate}"/></td>
+			</tr>
+		</table>		
+	</div>
+	<div id="modifyPwd">
 		<form action="${pageContext.request.contextPath}/vistor/modifyPwd?vistorId=${vistor.vistorId}" method="POST">
 			<table border="2" cellpadding="10" cellspacing="0">
 				<tr>

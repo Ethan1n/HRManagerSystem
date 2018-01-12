@@ -56,8 +56,14 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Boolean removeDepartment(Integer departmentId) {
-		Integer res=departmentDao.deleteDepartment(departmentId);
-		return res>0?true:false;
+		List<Position> positions=positionDao.queryByDepartmentId(departmentId);
+		System.out.println(positions);
+		if(positions.isEmpty()) {
+			Integer res=departmentDao.deleteDepartment(departmentId);
+			return res>0?true:false;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
@@ -92,8 +98,13 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Boolean removePosition(Integer positionId) {
-		Integer res=positionDao.deletePosition(positionId);
-		return res>0?true:false;
+		List<Employee> employees=employeeDao.queryByPositionId(positionId);
+		if(employees.isEmpty()) {
+			Integer res=positionDao.deletePosition(positionId);
+			return res>0?true:false;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
@@ -139,8 +150,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Candidates> receiveResume(Integer status) {
-		List<Candidates> candidateses=candidatesDao.queryAllCandidatesByStatus(status);
+	public List<Candidates> receiveResume() {
+		List<Candidates> candidateses=candidatesDao.queryAllCandidates();
 		return candidateses;
 	}
 
@@ -186,12 +197,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Interview arrangeInterview(Integer vistorId) {
-		Interview interview=interviewDao.queryByVistorId(vistorId);
-		return interview;
-	}
-
-	@Override
 	public Department findDepartmentById(Integer departmentId) {
 		Department department=departmentDao.queryDepartmentById(departmentId);
 		return department;
@@ -201,5 +206,11 @@ public class AdminServiceImpl implements AdminService {
 	public Position findPositionById(Integer positionId) {
 		Position position=positionDao.queryPositionById(positionId);
 		return position;
+	}
+
+	@Override
+	public Candidates findCandidatesById(Integer candidatesId) {
+		Candidates candidates=candidatesDao.queryCandidatesById(candidatesId);
+		return candidates;
 	}
 }

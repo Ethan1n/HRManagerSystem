@@ -14,6 +14,7 @@ import com.iotek.ssm.entity.Admin;
 import com.iotek.ssm.entity.Candidates;
 import com.iotek.ssm.entity.Department;
 import com.iotek.ssm.entity.Employee;
+import com.iotek.ssm.entity.Interview;
 import com.iotek.ssm.entity.Position;
 import com.iotek.ssm.entity.Recruit;
 import com.iotek.ssm.entity.Resume;
@@ -58,6 +59,8 @@ public class VistorController {
 		if(loginType.equals("1")) {
 			Vistor vistor=vistorService.vistorLogin(new Vistor(name, password));
 			if(vistor!=null) {
+				model.addAttribute("candidates", vistorService.findCandidatesByVisotrId(vistor.getVistorId()));
+				model.addAttribute("interview", vistorService.receiveInterview(vistor.getVistorId()));
 				model.addAttribute("vistor", vistor);
 				return "vistorPage";
 			}else {
@@ -74,6 +77,7 @@ public class VistorController {
 		}else if(loginType.equals("3")) {
 			Admin admin=adminService.adminLogin(new Admin(name, password));
 			if(admin!=null) {
+				model.addAttribute("departments", adminService.findAllDepartment());
 				model.addAttribute("admin", admin);
 				return "adminPage";
 			}else {
@@ -142,8 +146,15 @@ public class VistorController {
 	@RequestMapping("/sendResume")
 	@ResponseBody
 	public String sendResume(Candidates candidates) {
-		System.out.println(candidates.getVistorId());
 		Boolean flag=vistorService.sendResume(candidates);
+		return String.valueOf(flag);
+	}
+	
+	@RequestMapping("/receiveInterview")
+	@ResponseBody
+	public String receiveInterview(String vistorId) {
+		Interview interview=vistorService.receiveInterview(Integer.valueOf(vistorId));
+		Boolean flag=interview!=null?true:false;
 		return String.valueOf(flag);
 	}
 }

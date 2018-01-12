@@ -73,13 +73,15 @@ public interface AdminService {
 	/*
 	 *应聘 
 	 */
-	public List<Candidates> receiveResume(Integer status);//收取简历,根据应聘信息的状态把所有未处理的简历查询出来
+	public List<Candidates> receiveResume();//收取简历,根据应聘信息的状态把所有未处理的简历查询出来
 	
 	public Resume makeMarkToResume(Integer candidatesId, Integer vistorId);//做标记并查阅简历
 	
+	public Candidates findCandidatesById(Integer candidatesId);//查看某个游客的应聘信息
+	
 	public Boolean notifyInterview(Interview interview);//通知面试、并记录面试时间
 	
-	public Interview arrangeInterview(Integer vistorId);//通知安排员工进行面试
+	//通知安排员工进行面试
 	
 	public Boolean addEmployee(Employee employee);//录用员工
  

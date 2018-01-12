@@ -33,7 +33,12 @@ public class TestCandidatesDao {
 	}
 	
 	@Test
-	public void testQueryAllCandidatesByStatus() {
-		System.out.println(candidatesDao.queryAllCandidatesByStatus(1));
+	public void testQueryAllCandidates() {
+		System.out.println(candidatesDao.queryAllCandidates());
+	}
+	
+	@Test
+	public void testQuery() {
+		System.out.println(candidatesDao.queryCandidatesByVisotrId(1));
 	}
 }

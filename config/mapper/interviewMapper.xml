@@ -30,4 +30,11 @@
 			c.vistor_id=#{vistorId}
 	</select>
 	
+	<delete id="deleteInterview">
+		DELETE FROM 
+			interviews 
+		WHERE
+			interview_id=#{interviewId}
+	</delete>
+	
 </mapper>
